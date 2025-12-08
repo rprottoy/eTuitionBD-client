@@ -23,7 +23,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="mt-0 shadow-sm sticky">
+    <div className="mt-0 shadow-sm sticky bg-white">
       <div className="py-2 max-w-11/12 mx-auto items-center ">
         {/* Menu Dropdown */}
         <div className="dropdown">
@@ -57,7 +57,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center justify-between pb-4">
           {/* logo */}
-          <div>
+          <Link to="/">
             {/* <img className="w-[250px]" src={logo} alt="" /> */}
             <h1 className="font-extrabold text-4xl font-primary">
               <span className="text-[#00b7a6]">e</span>
@@ -71,7 +71,7 @@ const Navbar = () => {
               <span className="text-[#306417]">B</span>
               <span className="text-[#5ce1e6]">D</span>
             </h1>
-          </div>
+          </Link>
           <div className="flex items-center gap-10">
             <div>
               <nav>
@@ -81,9 +81,12 @@ const Navbar = () => {
               </nav>
             </div>
             <div>
-              <button className="btn bg-accent font-primary font-bold text-white">
+              <Link
+                to="/login"
+                className="btn bg-white border border-accent text-accent font-bold hover:text-[#222222] hover:border-[#222222]"
+              >
                 Login Now
-              </button>
+              </Link>
             </div>
           </div>
         </div>

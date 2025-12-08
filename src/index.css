@@ -18,9 +18,13 @@
 
 @plugin "daisyui/theme" {
   --color-primary: #4b2972;
-  --color-base: #ffffff;
+  --color-base: #757575;
   --color-contrast: #222222;
   --color-accent: #0c3d54;
   --color-accent--variation: hsl(271.4 41.2% 90%);
   --color-border--variation: hsl(0, 0%, 91%);
+}
+
+body {
+  background-color: #eaeced;
 }

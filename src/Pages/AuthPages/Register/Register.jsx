@@ -1,9 +1,132 @@
 import React from "react";
+import photo from "../../../assets/Cover1.png";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router";
 
 const Register = () => {
+  const { register, handleSubmit } = useForm();
+
+  const handleRegister = (data) => {
+    console.log(data);
+  };
+
   return (
-    <div>
-      <h2>Register page</h2>
+    <div className=" md:flex items-center py-20">
+      <div className="flex-1 w-11/12 mx-auto md:w-0">
+        <div className="md:px-50 py-8">
+          <h2 className="font-bold text-4xl font-primary">
+            <span className="text-accent ">Create</span>{" "}
+            <span className="text-black">an</span>{" "}
+            <span className="text-accent">Account</span>
+          </h2>
+          <p className="font-secondary font-medium text-[#757575] text-2xl mt-1.5">
+            Lets get started a new journey!!!
+          </p>
+        </div>
+        <div className="md:px-50 ">
+          <form onSubmit={handleSubmit(handleRegister)} className="">
+            <fieldset className="fieldset  ">
+              {/* Name */}
+              <label className="label ">Name</label>
+              <input
+                type="text"
+                {...register("name", { required: true })}
+                className="input w-full"
+                placeholder="Name"
+              />
+              {/* Email */}
+              <label className="label ">Email</label>
+              <input
+                type="email"
+                {...register("email", { required: true })}
+                className="input w-full"
+                placeholder="Email"
+              />
+              <label className="label">Password</label>
+              <input
+                type="password"
+                {...register("password", { required: true })}
+                className="input w-full"
+                placeholder="Password"
+              />
+
+              {/* Role Selection */}
+              <label className="label">Role Selection</label>
+              <select
+                className="input w-full"
+                {...register("role", { required: true })}
+                name="role"
+              >
+                <option value="">Select a role</option>
+                <option value="Tutor">Tutor</option>
+                <option value="Student">Student</option>
+              </select>
+              {/* Phone */}
+              <label className="label ">Phone</label>
+              <input
+                type="number"
+                {...register("phone", { required: true })}
+                className="input w-full"
+                placeholder="Phone Number"
+              />
+
+              <button className="btn bg-accent text-white font-primary font-bold mt-4 hover:bg-[#222222] hover:border-[#222222]">
+                Register
+              </button>
+            </fieldset>
+          </form>
+          <div>
+            <h4 className="text-center my-2 text-md font-secondary font-extrabold text-[#757575]">
+              Or
+            </h4>
+
+            {/* Google */}
+            <button className="btn bg-white text-black border-[#e5e5e5] w-full border shadow mb-5">
+              <svg
+                aria-label="Google logo"
+                width="16"
+                height="16"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <g>
+                  <path d="m0 0H512V512H0" fill="#fff"></path>
+                  <path
+                    fill="#34a853"
+                    d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
+                  ></path>
+                  <path
+                    fill="#4285f4"
+                    d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
+                  ></path>
+                  <path
+                    fill="#fbbc02"
+                    d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
+                  ></path>
+                  <path
+                    fill="#ea4335"
+                    d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
+                  ></path>
+                </g>
+              </svg>
+              Login with Google
+            </button>
+          </div>
+          <div>
+            <p>
+              Already have an account?{" "}
+              <Link className="text-accent" to="/login">
+                Login
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* image */}
+      <div className=" flex-1 bg-base-300">
+        <img className="" src={photo} alt="" />
+      </div>
     </div>
   );
 };
