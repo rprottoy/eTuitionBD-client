@@ -2,6 +2,7 @@ import React from "react";
 import photo from "../../../assets/Cover1.png";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import UseAuth from "../../../Hooks/useAuth";
 
 const Register = () => {
   const {
@@ -10,8 +11,27 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
+  const { registerUser, signInGoogle } = UseAuth();
+
   const handleRegister = (data) => {
-    console.log(data);
+    // console.log(data);
+    registerUser(data.email, data.password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInGoogle()
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -94,11 +114,14 @@ const Register = () => {
           </form>
           <div>
             <h4 className="text-center my-2 text-md font-secondary font-extrabold text-[#757575]">
-              Or
+              OR
             </h4>
 
             {/* Google */}
-            <button className="btn bg-white text-black border-[#e5e5e5] w-full border shadow mb-5">
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn bg-white text-black border-[#e5e5e5] w-full border shadow mb-5"
+            >
               <svg
                 aria-label="Google logo"
                 width="16"
