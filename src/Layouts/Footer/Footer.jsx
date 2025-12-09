@@ -32,7 +32,7 @@ const Footer = () => {
           <a className="link link-hover">Cookie policy</a>
         </nav>
       </footer>
-      <footer className="footer bg-[#2a1332] text-white px-10 py-4 flex justify-between">
+      <footer className="footer bg-[#2a1332] text-white px-10 py-4 md:flex justify-between">
         <aside className="">
           <Link to="/">
             {/* <img className="w-[250px]" src={logo} alt="" /> */}
