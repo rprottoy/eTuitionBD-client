@@ -3,6 +3,7 @@ import photo from "../../../assets/Cover1.png";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import UseAuth from "../../../Hooks/useAuth";
+import axios from "axios";
 
 const Register = () => {
   const {
@@ -11,13 +12,36 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const { registerUser, signInGoogle } = UseAuth();
+  const { registerUser, signInGoogle, updateUserProfile } = UseAuth();
 
   const handleRegister = (data) => {
     // console.log(data);
+    const profileImg = data.photo[0];
+
     registerUser(data.email, data.password)
       .then((res) => {
         console.log(res.user);
+        const formData = new FormData();
+        formData.append("image", profileImg);
+        const imageApiUrl = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_Image_Host
+        }`;
+
+        axios.post(imageApiUrl, formData).then((res) => {
+          console.log(res);
+
+          const userProfile = {
+            displayName: data.name,
+            photoURL: res.data.data.url,
+          };
+          updateUserProfile(userProfile)
+            .then(() => {
+              console.log("User profile updated successfully");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -86,6 +110,16 @@ const Register = () => {
                   Password must be at least 6 characters or longer
                 </p>
               )}
+
+              {/* Photo */}
+
+              <label className="label">Photo</label>
+              <input
+                type="file"
+                {...register("photo")}
+                className="file-input file-input-md w-full"
+                placeholder="Your photo"
+              />
 
               {/* Role Selection */}
               <label className="label">Role Selection</label>

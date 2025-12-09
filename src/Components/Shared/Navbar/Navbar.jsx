@@ -1,7 +1,21 @@
 import React from "react";
 import { Link } from "react-router";
+import UseAuth from "../../../Hooks/useAuth";
+import { Links } from "react-router";
 
 const Navbar = () => {
+  const { user, logOut } = UseAuth();
+
+  const handleSignOut = () => {
+    logOut()
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const links = (
     <>
       <Link to="/">
@@ -81,12 +95,54 @@ const Navbar = () => {
               </nav>
             </div>
             <div>
-              <Link
-                to="/login"
-                className="btn bg-white border border-accent text-accent font-bold hover:text-[#222222] hover:border-[#222222]"
-              >
-                Login Now
-              </Link>
+              {user && (
+                <div className="font-primary mr-4">
+                  <div className="dropdown dropdown-end">
+                    <div tabIndex={0} role="button" className=" m-1">
+                      <img
+                        className="rounded-full w-9"
+                        src={user.photoURL}
+                        alt="User's photo"
+                      />
+                    </div>
+                    <ul
+                      tabIndex="-1"
+                      className="dropdown-content menu bg-base-100 rounded-box z-1 w-70 p-3 shadow-md space-y-2"
+                    >
+                      <li>
+                        <h4 className=" text-[18px] font-secondary">
+                          {user.displayName}
+                        </h4>
+                      </li>
+                      <li>
+                        <a className=" text-[18px] font-secondary">
+                          {user.email}
+                        </a>
+                      </li>
+                      <li>
+                        <button
+                          onClick={handleSignOut}
+                          className="btn bg-white border border-accent text-accent font-bold hover:text-[#222222] hover:border-[#222222] "
+                        >
+                          LOG OUT
+                        </button>
+                      </li>
+                      <li></li>
+                    </ul>
+                  </div>
+                </div>
+              )}
+
+              {user ? (
+                ""
+              ) : (
+                <Link
+                  to="/login"
+                  className="btn bg-white border border-accent text-accent font-bold hover:text-[#222222] hover:border-[#222222]"
+                >
+                  Login Now
+                </Link>
+              )}
             </div>
           </div>
         </div>
