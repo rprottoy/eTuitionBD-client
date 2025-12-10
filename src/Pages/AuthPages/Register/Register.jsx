@@ -1,11 +1,14 @@
 import React from "react";
 import photo from "../../../assets/Cover1.png";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import UseAuth from "../../../Hooks/useAuth";
 import axios from "axios";
 
 const Register = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -21,6 +24,7 @@ const Register = () => {
     registerUser(data.email, data.password)
       .then((res) => {
         console.log(res.user);
+
         const formData = new FormData();
         formData.append("image", profileImg);
         const imageApiUrl = `https://api.imgbb.com/1/upload?key=${
@@ -33,10 +37,13 @@ const Register = () => {
           const userProfile = {
             displayName: data.name,
             photoURL: res.data.data.url,
+            phoneNumber: data.phone,
+            role: data.role,
           };
           updateUserProfile(userProfile)
             .then(() => {
               console.log("User profile updated successfully");
+              navigate(location?.state || "/");
             })
             .catch((error) => {
               console.log(error);
@@ -52,6 +59,7 @@ const Register = () => {
     signInGoogle()
       .then((res) => {
         console.log(res.user);
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         console.log(error);
@@ -189,7 +197,7 @@ const Register = () => {
           <div>
             <p>
               Already have an account?{" "}
-              <Link className="text-accent" to="/login">
+              <Link state={location.state} className="text-accent" to="/login">
                 Login
               </Link>
             </p>

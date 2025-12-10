@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router";
-import location from "../../assets/location.png";
-import message from "../../assets/message.png";
-import support from "../../assets/support.png";
-import facebook from "../../assets/icons8-facebook-50.png";
-import instagram from "../../assets/icons8-instagram-50.png";
-import x from "../../assets/icons8-x-50.png";
-import youtube from "../../assets/icons8-youtube-50.png";
+import location from "../../../assets/location.png";
+import message from "../../../assets/message.png";
+import support from "../../../assets/support.png";
+import facebook from "../../../assets/icons8-facebook-50.png";
+import instagram from "../../../assets/icons8-instagram-50.png";
+import x from "../../../assets/icons8-x-50.png";
+import youtube from "../../../assets/icons8-youtube-50.png";
 
 const Footer = () => {
   return (

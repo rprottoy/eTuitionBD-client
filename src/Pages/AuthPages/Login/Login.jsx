@@ -1,10 +1,13 @@
 import React from "react";
 import photo from "../../../assets/Cover1.png";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigation } from "react-router";
 import UseAuth from "../../../Hooks/useAuth";
 
 const Login = () => {
+  const location = useLocation();
+  const navigate = useNavigation();
+
   const { signInUser, signInGoogle } = UseAuth();
 
   const {
@@ -16,8 +19,9 @@ const Login = () => {
   const handleLogin = (data) => {
     // console.log(data);
     signInUser(data.email, data.password)
-      .then((res) => {
-        console.log(res.user);
+      .then(() => {
+        // console.log(res.user);
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         console.log(error);
@@ -26,8 +30,9 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     signInGoogle()
-      .then((res) => {
-        console.log(res.user);
+      .then(() => {
+        // console.log(res.user);
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         console.log(error);
