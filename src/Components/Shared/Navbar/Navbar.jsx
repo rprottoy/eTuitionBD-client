@@ -37,8 +37,8 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="mt-0 shadow-sm sticky bg-white">
-      <div className="py-2 max-w-11/12 mx-auto items-center ">
+    <div className="mt-0 shadow-sm bg-white">
+      <div className="pb-2 max-w-11/12 mx-auto items-center ">
         {/* Menu Dropdown */}
         <div className="dropdown">
           <div
@@ -69,7 +69,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <div className="flex items-center justify-between pb-4">
+        <div className="flex items-center justify-between ">
           {/* logo */}
           <Link to="/">
             {/* <img className="w-[250px]" src={logo} alt="" /> */}
@@ -100,7 +100,7 @@ const Navbar = () => {
                   <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className=" m-1">
                       <img
-                        className="rounded-full w-9"
+                        className="rounded-full w-7"
                         src={user.photoURL}
                         alt="User's photo"
                       />

@@ -9,6 +9,7 @@ import Login from "../Pages/AuthPages/Login/Login";
 import Register from "../Pages/AuthPages/Register/Register";
 import AddTuitions from "../Pages/AddTuitions/AddTuitions";
 import PrivateRoute from "./PrivateRoute";
+import DashboardLayout from "../Layouts/MainLayout/DashboardLayout/DashboardLayout";
 
 export const router = createBrowserRouter([
   {
@@ -44,10 +45,20 @@ export const router = createBrowserRouter([
         path: "/register",
         Component: Register,
       },
-      {
-        path: "/add-tuition",
-        Component: AddTuitions,
-      },
     ],
   },
+  // {
+  //   path: "/dashboard",
+  //   element: (
+  //     <PrivateRoute>
+  //       <DashboardLayout></DashboardLayout>
+  //     </PrivateRoute>
+  //   ),
+  //   children: [
+  //     {
+  //       path: "/add-tuition",
+  //       Component: AddTuitions,
+  //     },
+  //   ],
+  // },
 ]);

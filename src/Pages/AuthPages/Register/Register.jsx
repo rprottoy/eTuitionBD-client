@@ -37,7 +37,7 @@ const Register = () => {
           const userProfile = {
             displayName: data.name,
             photoURL: res.data.data.url,
-            phoneNumber: data.phone,
+            phoneNumber: data.phoneNumber,
             role: data.role,
           };
           updateUserProfile(userProfile)
@@ -134,7 +134,6 @@ const Register = () => {
               <select
                 className="input w-full"
                 {...register("role", { required: true })}
-                name="role"
               >
                 <option value="">Select a role</option>
                 <option value="Tutor">Tutor</option>
@@ -144,7 +143,7 @@ const Register = () => {
               <label className="label ">Phone</label>
               <input
                 type="number"
-                {...register("phone", { required: true })}
+                {...register("phoneNumber", { required: true })}
                 className="input w-full"
                 placeholder="Phone Number"
               />
