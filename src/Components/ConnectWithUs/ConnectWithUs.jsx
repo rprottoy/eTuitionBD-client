@@ -9,7 +9,7 @@ const ConnectWithUs = () => {
     <div className="  bg-base-200">
       <div className="py-30 w-11/12 mx-auto">
         <div className="text-center mb-8">
-          <h1 className="font-bold md:text-4xl text-3xl text-[#121212] font-primary ">
+          <h1 className="font-bold md:text-4xl text-3xl text-[#2d3748] font-primary ">
             The Ways <span className="text-accent">Students</span> Can Connect
             with Us.
           </h1>
@@ -24,10 +24,10 @@ const ConnectWithUs = () => {
               />
             </div>
             <div>
-              <h3 className="font-primary  font-bold text-xl">
+              <h3 className="font-primary  font-bold text-xl text-[#2d3748]">
                 Create Profile
               </h3>
-              <p className="font-secondary ">
+              <p className="font-secondary text-[#757575]">
                 Create a profile to get more learning benefits from website.
               </p>
             </div>
@@ -41,10 +41,10 @@ const ConnectWithUs = () => {
               />
             </div>
             <div>
-              <h3 className="font-primary  font-bold text-xl">
+              <h3 className="font-primary  font-bold text-xl text-[#2d3748]">
                 Submit Requirements
               </h3>
-              <p className="font-secondary ">
+              <p className="font-secondary text-[#757575]">
                 Fill up expected tutor requirements & submit the request.
               </p>
             </div>
@@ -58,10 +58,10 @@ const ConnectWithUs = () => {
               />
             </div>
             <div>
-              <h3 className="font-primary  font-bold text-xl">
+              <h3 className="font-primary  font-bold text-xl text-[#2d3748]">
                 Get Tutors' CV
               </h3>
-              <p className="font-secondary ">
+              <p className="font-secondary text-[#757575]">
                 On requirements, we will provide some expert tutors' CVs.
               </p>
             </div>
@@ -75,10 +75,10 @@ const ConnectWithUs = () => {
               />
             </div>
             <div>
-              <h3 className="font-primary  font-bold text-xl">
+              <h3 className="font-primary  font-bold text-xl text-[#2d3748]">
                 Select Your Tutor
               </h3>
-              <p className="font-secondary ">
+              <p className="font-secondary text-[#757575]">
                 Evaluate tutors & start learning with your favorite one.
               </p>
             </div>

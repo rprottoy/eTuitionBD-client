@@ -58,7 +58,8 @@ const Register = () => {
   const handleGoogleSignIn = () => {
     signInGoogle()
       .then((res) => {
-        console.log(res.user);
+        res.user.role === "Student";
+        // console.log(res.user);
         navigate(location?.state || "/");
       })
       .catch((error) => {
@@ -72,7 +73,7 @@ const Register = () => {
         <div className="md:px-50 py-8">
           <h2 className="font-bold text-4xl font-primary">
             <span className="text-accent ">Create</span>{" "}
-            <span className="text-black">an</span>{" "}
+            <span className="text-[#2d3748]">an</span>{" "}
             <span className="text-accent">Account</span>
           </h2>
           <p className="font-secondary font-medium text-[#757575] text-2xl mt-1.5">
@@ -148,7 +149,7 @@ const Register = () => {
                 placeholder="Phone Number"
               />
 
-              <button className="btn bg-accent text-white font-primary font-bold mt-4 hover:bg-[#222222] hover:border-[#222222]">
+              <button className="btn bg-accent text-white font-primary font-bold mt-4 hover:bg-[#2d3748] hover:border-[#2d3748]">
                 Register
               </button>
             </fieldset>

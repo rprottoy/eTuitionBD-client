@@ -11,7 +11,7 @@ const Banner = () => {
     <div className="md:flex items-center w-11/12 mx-auto text-center">
       <div className="flex-1">
         <h1 className="font-bold md:text-5xl text-4xl font-primary text-accent">
-          Country's <span className="text-black">#1</span> Tuition <br />{" "}
+          Country's <span className="text-[#2d3748]">#1</span> Tuition <br />{" "}
           Matching Platform
         </h1>
         <p className="font-secondary font-medium text-[#757575] text-3xl mt-3">

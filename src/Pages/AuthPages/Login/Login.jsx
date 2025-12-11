@@ -44,7 +44,7 @@ const Login = () => {
         <div className="md:px-50 py-8">
           <h2 className="font-bold text-4xl font-primary">
             <span className="text-accent ">Welcome</span>{" "}
-            <span className="text-black">Back</span>{" "}
+            <span className="text-[#2d3748]">Back</span>{" "}
           </h2>
           <p className="font-secondary font-medium text-[#757575] text-2xl mt-1.5">
             Sign in to Continue your Journey.
@@ -98,7 +98,7 @@ const Login = () => {
             {/* Google */}
             <button
               onClick={handleGoogleSignIn}
-              className="btn bg-white text-black border-[#e5e5e5] w-full border shadow mb-5"
+              className="btn bg-white text-[#2d3748] border-[#e5e5e5] w-full border shadow mb-5"
             >
               <svg
                 aria-label="Google logo"

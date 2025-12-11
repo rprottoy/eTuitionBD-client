@@ -5,7 +5,7 @@ const FeaturedInstructor = () => {
   return (
     <div className="w-11/12 mx-auto mb-30 ">
       <div className="mt-10 text-center space-y-3 ">
-        <h2 className="font-bold md:text-5xl text-4xl font-primary text-[#121212]">
+        <h2 className="font-bold md:text-5xl text-4xl font-primary text-[#2d3748]">
           Our Featured <span className="text-accent">Instructors</span>
         </h2>
         <h3 className="font-secondary font-medium text-[#757575] text-3xl">
@@ -22,7 +22,7 @@ const FeaturedInstructor = () => {
             />
           </div>
           <div className="text-center space-y-1 mt-2">
-            <h3 className="font-semibold text-2xl font-primary text-[#121212]">
+            <h3 className="font-semibold text-2xl font-primary text-[#2d3748]">
               Resalat Al Samin
             </h3>
             <p className="font-medium font-secondary text-lg text-[#757575]">
@@ -52,7 +52,7 @@ const FeaturedInstructor = () => {
             alt=""
           />
           <div className="text-center space-y-1">
-            <h3 className="font-semibold text-2xl font-primary text-[#121212]">
+            <h3 className="font-semibold text-2xl font-primary text-[#2d3748]">
               Resalat Al Samin
             </h3>
             <p className="font-medium font-secondary text-lg text-[#757575]">
@@ -81,7 +81,7 @@ const FeaturedInstructor = () => {
             alt=""
           />
           <div className="text-center space-y-1">
-            <h3 className="font-semibold text-2xl font-primary text-[#121212]">
+            <h3 className="font-semibold text-2xl font-primary text-[#2d3748]">
               Resalat Al Samin
             </h3>
             <p className="font-medium font-secondary text-lg text-[#757575]">

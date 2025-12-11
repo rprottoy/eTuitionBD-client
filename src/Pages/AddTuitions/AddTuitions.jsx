@@ -34,7 +34,7 @@ const AddTuitions = () => {
       <div className="text-center">
         <h2 className="font-bold text-4xl font-primary">
           <span className="text-accent ">Add</span>{" "}
-          <span className="text-black">Tuition</span>{" "}
+          <span className="text-[#2d3748]">Tuition</span>{" "}
         </h2>
         <p className="font-secondary font-medium text-[#757575] text-2xl mt-1.5 pb-8">
           Fill the form to find your desired tuition.

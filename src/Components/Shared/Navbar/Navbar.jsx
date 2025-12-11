@@ -34,6 +34,17 @@ const Navbar = () => {
       <Link to="/contact">
         <li>Contact</li>
       </Link>
+      {/* {user.role ? (
+        <>
+          <Links to="/student-dashboard">
+            <li>Dashboard</li>
+          </Links>
+        </>
+      ) : (
+        <Links to="/tutor-dashboard">
+          <li>Dashboard</li>
+        </Links>
+      )} */}
     </>
   );
   return (
