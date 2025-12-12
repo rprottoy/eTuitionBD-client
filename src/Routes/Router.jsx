@@ -7,9 +7,9 @@ import About from "../Pages/About/About";
 import Contact from "../Pages/Contact/Contact";
 import Login from "../Pages/AuthPages/Login/Login";
 import Register from "../Pages/AuthPages/Register/Register";
-import AddTuitions from "../Pages/AddTuitions/AddTuitions";
+import AddTuitions from "../Layouts/MainLayout/DashboardLayout/StudentDashBoard/AddTuitions/AddTuitions";
 import PrivateRoute from "./PrivateRoute";
-import DashboardLayout from "../Layouts/MainLayout/DashboardLayout/DashboardLayout";
+import DashboardLayout from "../Layouts/MainLayout/DashboardLayout/StudentDashboard";
 
 export const router = createBrowserRouter([
   {
