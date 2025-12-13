@@ -7,9 +7,11 @@ import About from "../Pages/About/About";
 import Contact from "../Pages/Contact/Contact";
 import Login from "../Pages/AuthPages/Login/Login";
 import Register from "../Pages/AuthPages/Register/Register";
-import AddTuitions from "../Layouts/MainLayout/DashboardLayout/StudentDashBoard/AddTuitions/AddTuitions";
 import PrivateRoute from "./PrivateRoute";
-import DashboardLayout from "../Layouts/MainLayout/DashboardLayout/StudentDashboard";
+
+import DashboardLayout from "../Layouts/MainLayout/DashboardLayout/DashboardLayout";
+import MyTuitions from "../Pages/Dashboard/MyTuitions/MyTuitions";
+import AddTuition from "../Pages/Dashboard/AddTuition/AddTuition";
 
 export const router = createBrowserRouter([
   {
@@ -47,18 +49,18 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: "/dashboard",
-  //   element: (
-  //     <PrivateRoute>
-  //       <DashboardLayout></DashboardLayout>
-  //     </PrivateRoute>
-  //   ),
-  //   children: [
-  //     {
-  //       path: "/add-tuition",
-  //       Component: AddTuitions,
-  //     },
-  //   ],
-  // },
+  {
+    path: "/dashboard",
+    Component: DashboardLayout,
+    children: [
+      {
+        path: "my-tuitions",
+        Component: MyTuitions,
+      },
+      {
+        path: "add-tuition",
+        Component: AddTuition,
+      },
+    ],
+  },
 ]);
