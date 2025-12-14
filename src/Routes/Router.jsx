@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../Layouts/MainLayout/DashboardLayout/DashboardLayout";
 import MyTuitions from "../Pages/Dashboard/MyTuitions/MyTuitions";
 import AddTuition from "../Pages/Dashboard/AddTuition/AddTuition";
+import AddTutorDetails from "../Pages/Dashboard/AddTutorDetails/AddTutorDetails";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
       {
         path: "add-tuition",
         Component: AddTuition,
+      },
+      {
+        path: "add-tutor-details",
+        Component: AddTutorDetails,
       },
     ],
   },

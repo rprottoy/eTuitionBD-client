@@ -4,10 +4,12 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import UseAuth from "../../../Hooks/useAuth";
 import axios from "axios";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const AxiosSecure = useAxiosSecure();
 
   const {
     register,
@@ -34,20 +36,29 @@ const Register = () => {
         axios.post(imageApiUrl, formData).then((res) => {
           console.log(res);
 
+          // Create user in the database
+          const userInfo = {
+            email: data.email,
+            name: data.name,
+            photoURL: res.data.data.url,
+            phoneNumber: res.data.data.phone,
+          };
+          AxiosSecure.post("/users", userInfo).then((res) => {
+            console.log("user created in database", res);
+          });
+
           const userProfile = {
             displayName: data.name,
             photoURL: res.data.data.url,
-            phoneNumber: data.phoneNumber,
-            role: data.role,
+            phoneNumber: res.data.data.phoneNumber,
+            role: res.data.data.role,
           };
-          updateUserProfile(userProfile)
-            .then(() => {
-              console.log("User profile updated successfully");
-              navigate(location?.state || "/");
-            })
-            .catch((error) => {
+          updateUserProfile(userProfile).then(() => {
+            console.log("User profile updated successfully");
+            navigate(location?.state || "/").catch((error) => {
               console.log(error);
             });
+          });
         });
       })
       .catch((error) => {
@@ -58,9 +69,19 @@ const Register = () => {
   const handleGoogleSignIn = () => {
     signInGoogle()
       .then((res) => {
-        res.user.role === "Student";
         // console.log(res.user);
-        navigate(location?.state || "/");
+
+        const userInfo = {
+          email: res.user.email,
+          name: res.user.displayName,
+          photoURL: res.user.data.url,
+          phoneNumber: res.user.data.phone,
+        };
+
+        AxiosSecure.post("/users", userInfo).then((res) => {
+          console.log("user data stored", res);
+          navigate(location?.state || "/");
+        });
       })
       .catch((error) => {
         console.log(error);

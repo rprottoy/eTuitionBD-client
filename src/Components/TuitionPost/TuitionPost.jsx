@@ -20,11 +20,11 @@ const TuitionPost = () => {
       });
   }, []);
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="w-11/12 mx-auto mb-30">
       <div className="grid md:grid-cols-2 grid-cols-1 gap-5 ">
         {/* 1st card */}
         {tuitions.map((tuition) => (
-          <div key={tuition._id} className="rounded-lg p-7 bg-base-200">
+          <div key={tuition._id} className="rounded-lg p-7 bg-white">
             <div className="flex items-center justify-between mb-8">
               <h4 className="text-2xl font-medium font-primary text-[#2d3748]">
                 Class {tuition.class}
@@ -135,6 +135,11 @@ const TuitionPost = () => {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="flex justify-end">
+              <button className="btn bg-accent text-white font-primary font-bold mt-4 hover:bg-[#222222] hover:border-[#222222]">
+                See Details
+              </button>
             </div>
           </div>
         ))}

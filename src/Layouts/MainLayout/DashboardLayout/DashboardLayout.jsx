@@ -84,6 +84,11 @@ const DashboardLayout = () => {
                   <IoIosAddCircleOutline /> Add Tuition
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="add-tutor-details">
+                  <IoIosAddCircleOutline /> Add Tutor Details
+                </NavLink>
+              </li>
 
               {/* List item */}
               <li>
