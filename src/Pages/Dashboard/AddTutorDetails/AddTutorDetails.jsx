@@ -1,9 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const AddTutorDetails = () => {
+  const AxiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,

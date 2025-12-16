@@ -6,6 +6,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { IoIosTimer } from "react-icons/io";
 import { MdSubject } from "react-icons/md";
 import { SlCalender } from "react-icons/sl";
+import { motion } from "motion/react";
 
 const TuitionPost = () => {
   const [tuitions, setTuitions] = useState([]);
@@ -20,8 +21,18 @@ const TuitionPost = () => {
       });
   }, []);
   return (
-    <div className="w-11/12 mx-auto mb-30">
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-5 ">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="w-11/12 mx-auto mb-30"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="grid md:grid-cols-2 grid-cols-1 gap-5 "
+      >
         {/* 1st card */}
         {tuitions.map((tuition) => (
           <div key={tuition._id} className="rounded-lg p-7 bg-white">
@@ -144,8 +155,8 @@ const TuitionPost = () => {
           </div>
         ))}
         {/* 1st card end */}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

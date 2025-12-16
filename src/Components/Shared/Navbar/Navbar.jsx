@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import UseAuth from "../../../Hooks/useAuth";
 import { Links } from "react-router";
+import { motion } from "motion/react";
 
 const Navbar = () => {
   const { user, logOut } = UseAuth();
@@ -84,7 +85,10 @@ const Navbar = () => {
           {/* logo */}
           <Link to="/">
             {/* <img className="w-[250px]" src={logo} alt="" /> */}
-            <h1 className="font-extrabold text-4xl font-primary">
+            <motion.h1
+              whileHover={{ scale: 1.05 }}
+              className="font-extrabold text-4xl font-primary"
+            >
               <span className="text-[#00b7a6]">e</span>
               <span className="text-[#cb6ce6]">T</span>
               <span className="text-[#38b6ff]">u</span>
@@ -92,10 +96,10 @@ const Navbar = () => {
               <span className="text-[#ff5757]">t</span>
               <span className="text-[#38b6ff]">i</span>
               <span className="text-[#004aad]">o</span>
-              <span className="text-[#ffde59]">n</span>
+              <span className="text-[rgb(255,222,89)]">n</span>
               <span className="text-[#306417]">B</span>
               <span className="text-[#5ce1e6]">D</span>
-            </h1>
+            </motion.h1>
           </Link>
           <div className="flex items-center gap-10">
             <div>

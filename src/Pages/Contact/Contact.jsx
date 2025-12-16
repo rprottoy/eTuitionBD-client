@@ -1,9 +1,112 @@
 import React from "react";
+import location from "../../assets/Location-big.png";
+import mail from "../../assets/email.png";
+import phone from "../../assets/icons8-phone-96.png";
+import facebook from "../../assets/icons8-facebook-50.png";
+import youtube from "../../assets/icons8-youtube-50.png";
+import x from "../../assets/icons8-x-50.png";
+import instagram from "../../assets/icons8-instagram-50.png";
 
 const Contact = () => {
   return (
-    <div>
-      <h2>contact page</h2>
+    <div className="w-11/12 mx-auto my-30">
+      <div>
+        <div className="mb-10">
+          <h2 className="font-bold md:text-5xl text-4xl font-primary text-center text-[#2d3748]">
+            Our Featured <span className="text-accent">Instructors</span>
+          </h2>
+          <h3 className="font-secondary font-medium text-center text-[#757575] text-3xl">
+            Every Instructor is Professional and Highly Qualified
+          </h3>
+        </div>
+        <div className="md:flex items-center md:justify-center">
+          <div className="md:flex-1 bg-[#2d3748]">
+            <div className="md:grid grid-cols-2 p-12">
+              <div className="text-center flex flex-col items-center space-y-4 mb-15">
+                <div className="">
+                  <img className="w-15" src={location} alt="" />
+                </div>
+                <div>
+                  <h3 className="text-[#757575] mb-3 font-primary text-2xl">
+                    ADDRESS
+                  </h3>
+                  <p
+                    className="text-white
+                "
+                  >
+                    Dhaka, Bangladesh
+                  </p>
+                </div>
+              </div>
+              <div className="text-center flex flex-col items-center space-y-4">
+                <div className="">
+                  <img className="w-15" src={mail} alt="" />
+                </div>
+                <div>
+                  <h3 className="text-[#757575] mb-3 font-primary text-2xl">
+                    MAIL
+                  </h3>
+                  <p
+                    className="text-white
+                "
+                  >
+                    support@any.com
+                  </p>
+                </div>
+              </div>
+              <div className="text-center flex flex-col items-center space-y-4">
+                <div className="">
+                  <img className="w-15" src={phone} alt="" />
+                </div>
+                <div>
+                  <h3 className="text-[#757575] mb-3 font-primary text-2xl">
+                    PHONE
+                  </h3>
+                  <p
+                    className="text-white
+                "
+                  >
+                    ( + 000 ) 000 0000 0000
+                  </p>
+                </div>
+              </div>
+              <div className="text-center flex flex-col items-center space-y-4">
+                <div className=""></div>
+                <div>
+                  <h3 className="text-[#757575] mb-3 font-primary text-2xl">
+                    CONTACT US
+                  </h3>
+                  <p
+                    className="text-white
+                "
+                  >
+                    Contact Us For Quotes Or Join Us.
+                  </p>
+                  <div className="grid grid-flow-col mt-4">
+                    <a>
+                      <img className="w-6" src={facebook} alt="Facebook Icon" />
+                    </a>
+                    <a>
+                      <img
+                        className="w-6"
+                        src={instagram}
+                        alt="Instagram Icon"
+                      />
+                    </a>
+                    <a>
+                      <img className="w-6" src={x} alt="X Icon" />
+                    </a>
+                    <a>
+                      <img className="w-6" src={youtube} alt="Youtube Icon" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex-1"></div>
+        </div>
+      </div>
     </div>
   );
 };

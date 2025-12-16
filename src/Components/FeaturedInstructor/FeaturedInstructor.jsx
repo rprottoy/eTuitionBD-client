@@ -1,18 +1,34 @@
 import React from "react";
 import tutor from "../../assets/470144693_9264558626941552_1336338024377071556_n.jpg";
+import { motion } from "motion/react";
 
 const FeaturedInstructor = () => {
   return (
-    <div className="w-11/12 mx-auto mb-30 ">
-      <div className="mt-10 text-center space-y-3 ">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="w-11/12 mx-auto mb-30 "
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="mt-10 text-center space-y-3 "
+      >
         <h2 className="font-bold md:text-5xl text-4xl font-primary text-[#2d3748]">
           Our Featured <span className="text-accent">Instructors</span>
         </h2>
         <h3 className="font-secondary font-medium text-[#757575] text-3xl">
           Every Instructor is Professional and Highly Qualified
         </h3>
-      </div>
-      <div className="mt-10 md:flex md:gap-8 ">
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="mt-10 md:flex md:gap-8 "
+      >
         <div className="md:w-[320px] w-full border border-gray-300 bg-white mb-5 md:mb-0 p-5 rounded-lg overflow-hidden hover:-translate-y-1  transition-all duration-500 cursor-pointer">
           <div className="overflow-hidden relative">
             <img
@@ -133,8 +149,8 @@ const FeaturedInstructor = () => {
           </div>
         </div>
         {/* Extra car end above div */}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
