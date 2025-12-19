@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAuth from "../../../Hooks/useAuth";
 
 const AddTutorDetails = () => {
+  const { user } = useAuth();
   const AxiosSecure = useAxiosSecure();
   const {
     register,
@@ -14,15 +16,15 @@ const AddTutorDetails = () => {
   } = useForm();
 
   const handleTutor = (data) => {
-    AxiosSecure.post("/tuitions", data).then((res) => {
+    AxiosSecure.post("/tutor-details", data).then((res) => {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Your tuition has been posted",
+        title: "Your details has been updated!",
         showConfirmButton: false,
         timer: 1500,
       });
-      data.reset();
+
       console.log("After saving tuitions", res.data);
     });
   };

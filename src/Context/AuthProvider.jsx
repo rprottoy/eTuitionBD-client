@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import {
   createUserWithEmailAndPassword,
@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
 
   const signInGoogle = () => {
     setLoading(true);
-    signInWithPopup(auth, googleProvider);
+    return signInWithPopup(auth, googleProvider);
   };
 
   const logOut = () => {
@@ -47,11 +47,32 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
+
+      if (currentUser) {
+        const userData = {
+          uid: currentUser.uid,
+          email: currentUser.email,
+          displayName: currentUser.displayName,
+          photoURL: currentUser.photoURL,
+        };
+
+        localStorage.setItem("user", JSON.stringify(userData));
+      } else {
+        localStorage.removeItem("user");
+      }
     });
-    return () => {
-      unsubscribe();
-    };
+
+    return () => unsubscribe();
   }, []);
+
+  const { isAdmin, isTutor, isStudent } = useMemo(() => {
+    return {
+      isAdmin: user?.role?.toLowerCase() === "admin",
+      isTutor: user?.role?.toLowerCase() === "tutor",
+      isStudent: user?.role?.toLowerCase() === "student",
+    };
+  }, [user]);
+
   const authInfo = {
     registerUser,
     signInUser,
@@ -60,6 +81,9 @@ const AuthProvider = ({ children }) => {
     loading,
     logOut,
     updateUserProfile,
+    isAdmin,
+    isTutor,
+    isStudent,
   };
 
   return <AuthContext value={authInfo}>{children}</AuthContext>;

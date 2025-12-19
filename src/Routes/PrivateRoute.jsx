@@ -1,9 +1,9 @@
 import React, { Children } from "react";
-import UseAuth from "../Hooks/useAuth";
+import useAuth from "../Hooks/useAuth";
 import { Navigate } from "react-router";
 
 const PrivateRoute = ({ children }) => {
-  const { user, loading } = UseAuth();
+  const { user, loading } = useAuth();
 
   if (loading) {
     <div className="flex flex-col items-center justify-center">

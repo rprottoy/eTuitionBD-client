@@ -7,6 +7,7 @@ import { IoIosTimer } from "react-icons/io";
 import { MdSubject } from "react-icons/md";
 import { SlCalender } from "react-icons/sl";
 import { motion } from "motion/react";
+import { Link } from "react-router";
 
 const TuitionPost = () => {
   const [tuitions, setTuitions] = useState([]);
@@ -35,12 +36,15 @@ const TuitionPost = () => {
       >
         {/* 1st card */}
         {tuitions.map((tuition) => (
-          <div key={tuition._id} className="rounded-lg p-7 bg-white">
+          <div
+            key={tuition._id}
+            className="rounded-lg p-7 bg-white transition-transform duration-500 group-hover:scale-105"
+          >
             <div className="flex items-center justify-between mb-8">
               <h4 className="text-2xl font-medium font-primary text-[#2d3748]">
                 Class {tuition.class}
               </h4>
-              <p className="text-[#757575] text-xl">Job Id: {tuition._id}</p>
+              <p className="text-[#757575] text-xl">Job Id: </p>
             </div>
             <div className="mb-5">
               <p className="flex items-center gap-2 text-xl font-medium text-[#2d3748]">
@@ -148,9 +152,12 @@ const TuitionPost = () => {
               </div>
             </div>
             <div className="flex justify-end">
-              <button className="btn bg-accent text-white font-primary font-bold mt-4 hover:bg-[#222222] hover:border-[#222222]">
+              <Link
+                to="/tuition-details"
+                className="btn bg-accent text-white font-primary font-bold mt-4 hover:bg-[#222222] hover:border-[#222222]"
+              >
                 See Details
-              </button>
+              </Link>
             </div>
           </div>
         ))}

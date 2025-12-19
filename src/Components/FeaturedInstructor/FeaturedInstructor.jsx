@@ -1,8 +1,34 @@
-import React from "react";
-import tutor from "../../assets/470144693_9264558626941552_1336338024377071556_n.jpg";
+import React, { useEffect, useState } from "react";
+
 import { motion } from "motion/react";
+import education1 from "../../assets/education1.png";
+
+import useAuth from "../../Hooks/useAuth";
+import { useNavigate } from "react-router";
 
 const FeaturedInstructor = () => {
+  const [tutors, setTutors] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const Navigate = useNavigate();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    fetch("http://localhost:3000/tutor-homepage")
+      .then((res) => res.json())
+      .then((data) => {
+        setTutors(data);
+        setLoading(false);
+      });
+  }, []);
+
+  const handleTutorConfirm = (id) => {
+    if (user) {
+      Navigate(`/tuition-details/${id}`);
+    } else {
+      Navigate("/login");
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -29,125 +55,55 @@ const FeaturedInstructor = () => {
         transition={{ duration: 1, delay: 0.5 }}
         className="mt-10 md:flex md:gap-8 "
       >
-        <div className="md:w-[320px] w-full border border-gray-300 bg-white mb-5 md:mb-0 p-5 rounded-lg overflow-hidden hover:-translate-y-1  transition-all duration-500 cursor-pointer">
-          <div className="overflow-hidden relative">
-            <img
-              className="object-center object-cover h-[250px] md:w-[320px] w-full rounded-lg transition-transform duration-500 group-hover:scale-105"
-              src={tutor}
-              alt=""
-            />
-          </div>
-          <div className="text-center space-y-1 mt-2">
-            <h3 className="font-semibold text-2xl font-primary text-[#2d3748]">
-              Resalat Al Samin
-            </h3>
-            <p className="font-medium font-secondary text-lg text-[#757575]">
-              Location
-            </p>
-            <div className="space-y-2">
-              <div className="flex justify-between items-center  font-medium text-[#757575]">
-                <p>Mobile:</p>
-                <p>+000 0000 0000</p>
+        {tutors.map((tutor) => (
+          <div
+            onClick={handleTutorConfirm}
+            className="md:w-[320px] w-full border border-gray-300 bg-white mb-5 md:mb-0 p-5 rounded-lg overflow-hidden hover:-translate-y-1  transition-all duration-500 cursor-pointer"
+          >
+            <div className="overflow-hidden relative">
+              <img
+                className="object-center object-cover h-[200px] md:w-[320px] w-full rounded-lg transition-transform duration-500 group-hover:scale-105"
+                src={education1}
+                alt=""
+              />
+            </div>
+            <div className="text-center space-y-1 mt-2">
+              <div className="flex items-center gap-4">
+                <div>
+                  <img
+                    className="rounded-[300%] h-12 w-12"
+                    src={tutor.photo}
+                    alt=""
+                  />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-2xl font-primary text-[#2d3748]">
+                    {tutor.name}
+                  </h3>
+                  <p className="font-medium font-secondary text-lg text-[#757575]">
+                    {tutor.location}
+                  </p>
+                </div>
               </div>
-              <div className="flex justify-between items-center font-medium text-[#757575]">
-                <p>Qualification:</p>
-                <p>BSC/BUET</p>
-              </div>
-              <div className="flex justify-between items-center font-medium text-[#757575]">
-                <p>Mobile:</p>
-                <p>+000 0000 0000</p>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center  font-medium text-[#757575]">
+                  <p>Mobile: </p>
+                  <p>{tutor.phone}</p>
+                </div>
+                <div className="flex justify-between items-center font-medium text-[#757575]">
+                  <p>Qualification:</p>
+                  <p>{tutor.qualification}</p>
+                </div>
+                <div className="flex justify-between items-center font-medium text-[#757575]">
+                  <p>Salary:</p>
+                  <p>{tutor.salary}</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        ))}
         {/* Extra cards starts from here */}
-        <div className="md:w-[320px] w-full border border-gray-300 bg-white">
-          <img
-            className="object-center object-cover h-[250px] md:w-[320px] w-full rounded-lg p-2"
-            src={tutor}
-            alt=""
-          />
-          <div className="text-center space-y-1">
-            <h3 className="font-semibold text-2xl font-primary text-[#2d3748]">
-              Resalat Al Samin
-            </h3>
-            <p className="font-medium font-secondary text-lg text-[#757575]">
-              Location
-            </p>
-            <div className="space-y-2">
-              <div className="flex justify-between items-center px-4 font-medium text-[#757575]">
-                <p>Mobile:</p>
-                <p>+000 0000 0000</p>
-              </div>
-              <div className="flex justify-between items-center px-4 font-medium text-[#757575]">
-                <p>Qualification:</p>
-                <p>BSC/BUET</p>
-              </div>
-              <div className="flex justify-between items-center px-4 font-medium text-[#757575]">
-                <p>Mobile:</p>
-                <p>+000 0000 0000</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="md:w-[320px] w-full border border-gray-300 bg-white">
-          <img
-            className="object-center object-cover h-[250px] md:w-[320px] w-full rounded-lg p-2"
-            src={tutor}
-            alt=""
-          />
-          <div className="text-center space-y-1">
-            <h3 className="font-semibold text-2xl font-primary text-[#2d3748]">
-              Resalat Al Samin
-            </h3>
-            <p className="font-medium font-secondary text-lg text-[#757575]">
-              Location
-            </p>
-            <div className="space-y-2">
-              <div className="flex justify-between items-center px-4 font-medium text-[#757575]">
-                <p>Mobile:</p>
-                <p>+000 0000 0000</p>
-              </div>
-              <div className="flex justify-between items-center px-4 font-medium text-[#757575]">
-                <p>Qualification:</p>
-                <p>BSC/BUET</p>
-              </div>
-              <div className="flex justify-between items-center px-4 font-medium text-[#757575]">
-                <p>Mobile:</p>
-                <p>+000 0000 0000</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="md:w-[320px] w-full border border-gray-300 bg-white">
-          <img
-            className="object-center object-cover h-[250px] md:w-[320px] w-full rounded-lg p-2"
-            src={tutor}
-            alt=""
-          />
-          <div className="text-center space-y-1">
-            <h3 className="font-semibold text-2xl font-primary text-[#121212]">
-              Resalat Al Samin
-            </h3>
-            <p className="font-medium font-secondary text-lg text-[#757575]">
-              Location
-            </p>
-            <div className="space-y-2">
-              <div className="flex justify-between items-center px-4 font-medium text-[#757575]">
-                <p>Mobile:</p>
-                <p>+000 0000 0000</p>
-              </div>
-              <div className="flex justify-between items-center px-4 font-medium text-[#757575]">
-                <p>Qualification:</p>
-                <p>BSC/BUET</p>
-              </div>
-              <div className="flex justify-between items-center px-4 font-medium text-[#757575]">
-                <p>Mobile:</p>
-                <p>+000 0000 0000</p>
-              </div>
-            </div>
-          </div>
-        </div>
+
         {/* Extra car end above div */}
       </motion.div>
     </motion.div>

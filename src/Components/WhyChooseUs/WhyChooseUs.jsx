@@ -3,7 +3,7 @@ import React from "react";
 const WhyChooseUs = () => {
   return (
     <div>
-      <div className="w-full bg-base-200 mb-30">
+      <div className="w-full bg-base-200 mb-30 shadow-2xl">
         <div>
           <h2 className="text-[#2d3748] text-center font-primary font-bold text-3xl md:text-4xl py-10">
             Why Choose <span className="text-accent">Us</span>
@@ -12,46 +12,46 @@ const WhyChooseUs = () => {
         <div className="py-10 md:max-w-10/12 mx-auto text-white ">
           <div className="">
             <div className="  md:grid md:grid-cols-4">
-              <div className="space-y-2 text-center p-4 flex flex-col items-center md:w-[300px] h-fit border-r  border-gray-500">
+              <div className="space-y-2 text-center p-4 flex flex-col items-center md:w-[300px] h-fit md:border-r  border-gray-500">
                 <img
                   className="rounded-full w-25 brightness-90"
                   src=""
                   alt=""
                 />
                 <h3 className="font-primary font-semibold text-xl text-[#2d3748]">
-                  Easy Booking
+                  Verified Tutors
                 </h3>
                 <p className="font-secondary text-[#757575]">
-                  Book your car in minutes—simple search, transparent pricing,
-                  instant confirmation, and flexible pickup options.
+                  All tutors are reviewed, verified, and approved to ensure
+                  safe, quality learning.
                 </p>
               </div>
-              <div className="space-y-2 text-center p-4 flex flex-col items-center md:w-[300px] h-fit border-r border-gray-500">
+              <div className="space-y-2 text-center p-4 flex flex-col items-center md:w-[300px] h-fit md:border-r border-gray-500">
                 <img
                   className="rounded-full w-25 brightness-90"
                   src=""
                   alt=""
                 />
                 <h3 className="font-primary font-semibold text-xl text-[#2d3748]">
-                  Affordable Rates
+                  Trusted Tuition Posts
                 </h3>
                 <p className="font-secondary text-[#757575]">
-                  Enjoy budget-friendly rates with no hidden fees—compare
-                  options, unlock discounts, and save on every rental.
+                  Every tuition request is checked to keep tutors away from fake
+                  or misleading posts.
                 </p>
               </div>
-              <div className="space-y-2 text-center p-4 flex flex-col items-center md:w-[300px] h-fit border-r border-gray-500">
+              <div className="space-y-2 text-center p-4 flex flex-col items-center md:w-[300px] h-fit md:border-r border-gray-500">
                 <img
                   className="rounded-full w-25 brightness-80"
                   src=""
                   alt=""
                 />
                 <h3 className="font-primary font-semibold text-xl text-[#2d3748]">
-                  Trusted Providers
+                  Easy & Fast Matching
                 </h3>
                 <p className="font-secondary text-[#757575]">
-                  Rent with confidence—vetted partners, verified reviews, and
-                  secure payments ensure reliable rides every time.
+                  Post requirements and connect with suitable tutors quickly
+                  through a simple process.
                 </p>
               </div>
               <div className="space-y-2 text-center p-4 flex flex-col items-center md:w-[300px] h-fit ">
@@ -61,11 +61,11 @@ const WhyChooseUs = () => {
                   alt=""
                 />
                 <h3 className="font-primary font-semibold text-xl text-[#2d3748]">
-                  24/7 Support
+                  Secure Payments
                 </h3>
                 <p className="font-secondary text-[#757575]">
-                  Book your car in minutes—simple search, transparent pricing,
-                  instant confirmation, and flexible pickup options.
+                  Transparent, secure payment system ensures trust between
+                  students and tutors.
                 </p>
               </div>
             </div>

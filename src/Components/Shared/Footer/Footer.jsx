@@ -7,22 +7,31 @@ import facebook from "../../../assets/icons8-facebook-50.png";
 import instagram from "../../../assets/icons8-instagram-50.png";
 import x from "../../../assets/icons8-x-50.png";
 import youtube from "../../../assets/icons8-youtube-50.png";
+import { Links } from "react-router";
 
 const Footer = () => {
   return (
-    <div>
+    <div className="">
       <footer className="footer sm:footer-horizontal bg-[#2a1332] text-white p-10 ">
         <nav className="font-secondary">
           <h6 className="footer-title font-primary">Services</h6>
-          <a className="link link-hover">Tuitions</a>
-          <a className="link link-hover">Tutors</a>
+          <a className="link link-hover">
+            <Link to="/tuitions">Tuitions</Link>
+          </a>
+          <a className="link link-hover">
+            <Link to="/tutors">Tutors</Link>
+          </a>
           <a className="link link-hover">Study Materials</a>
           <a className="link link-hover">Consultations</a>
         </nav>
         <nav className="font-secondary">
           <h6 className="footer-title font-primary">Company</h6>
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
+          <a className="link link-hover">
+            <Link to="/about">About us</Link>
+          </a>
+          <a className="link link-hover">
+            <Link to="/contact">Contact</Link>
+          </a>
           <a className="link link-hover">Jobs</a>
         </nav>
         <nav className="font-secondary ">
@@ -32,7 +41,7 @@ const Footer = () => {
           <a className="link link-hover">Cookie policy</a>
         </nav>
       </footer>
-      <footer className="footer bg-[#2a1332] text-white px-10 py-4 md:flex justify-between">
+      <footer className="footer bg-[#2a1332] text-white md:px-10 px-2 py-4 md:flex justify-between">
         <aside className="">
           <Link to="/">
             {/* <img className="w-[250px]" src={logo} alt="" /> */}
@@ -69,8 +78,7 @@ const Footer = () => {
             <div className="flex items-center">
               <img className="w-4 h-4 mr-3" src={support} alt="support" />
               <p className="text-[#A9AEB3] font-medium">
-                Phone:{" "}
-                <span className="font-bold">( + 000 ) 000 0000 0000</span>
+                Phone: <span className="font-bold">( + 000 ) 0000 0000</span>
               </p>
             </div>
           </div>
@@ -85,7 +93,7 @@ const Footer = () => {
           <h6 className="font-semibold text-lg font-primary text-white">
             Subscribe Newsletter
           </h6>
-          <fieldset className="w-80 font-secondary">
+          <fieldset className="md:w-80 w-50 font-secondary">
             <label className="text-[#A9AEB3] ">Enter your email address</label>
             <div className="join">
               <input

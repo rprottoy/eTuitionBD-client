@@ -13,6 +13,10 @@ import DashboardLayout from "../Layouts/MainLayout/DashboardLayout/DashboardLayo
 import MyTuitions from "../Pages/Dashboard/MyTuitions/MyTuitions";
 import AddTuition from "../Pages/Dashboard/AddTuition/AddTuition";
 import AddTutorDetails from "../Pages/Dashboard/AddTutorDetails/AddTutorDetails";
+import TuitionDetails from "../Pages/Tuitions/TuitionDetails/TuitionDetails";
+
+import TutorDashboard from "../Pages/Dashboard/TutorDashboard/TutorDashboard";
+import AdminDashboard from "../Pages/Dashboard/AdminDashboard/AdminDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +52,12 @@ export const router = createBrowserRouter([
         path: "/register",
         Component: Register,
       },
+      {
+        path: "/tuition-details/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/tuition-details/${params.id}`),
+        Component: TuitionDetails,
+      },
     ],
   },
   {
@@ -58,6 +68,18 @@ export const router = createBrowserRouter([
         path: "my-tuitions",
         Component: MyTuitions,
       },
+      // {
+      //   path: "student",
+      //   Component: StudentDashboard,
+      // },
+      // {
+      //   path: "tutor",
+      //   Component: TutorDashboard,
+      // },
+      // {
+      //   path: "admin",
+      //   Component: AdminDashboard,
+      // },
       {
         path: "add-tuition",
         Component: AddTuition,

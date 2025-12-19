@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router";
-import UseAuth from "../../../Hooks/useAuth";
+import useAuth from "../../../Hooks/useAuth";
 import { Links } from "react-router";
 import { motion } from "motion/react";
 
 const Navbar = () => {
-  const { user, logOut } = UseAuth();
+  const { user, logOut } = useAuth();
 
   const handleSignOut = () => {
     logOut()
@@ -35,17 +35,10 @@ const Navbar = () => {
       <Link to="/contact">
         <li>Contact</li>
       </Link>
-      {/* {user.role ? (
-        <>
-          <Links to="/student-dashboard">
-            <li>Dashboard</li>
-          </Links>
-        </>
-      ) : (
-        <Links to="/tutor-dashboard">
-          <li>Dashboard</li>
-        </Links>
-      )} */}
+
+      <Link to="/dashboard">
+        <li>Dashboard</li>
+      </Link>
     </>
   );
   return (
@@ -56,7 +49,7 @@ const Navbar = () => {
           <div
             tabIndex={0}
             role="button"
-            className="btn btn-ghost bg-accent lg:hidden"
+            className="btn btn-ghost bg-accent mt-5 lg:hidden"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

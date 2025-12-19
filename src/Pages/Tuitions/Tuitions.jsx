@@ -6,10 +6,14 @@ import { FaLocationDot } from "react-icons/fa6";
 import { IoIosTimer } from "react-icons/io";
 import { MdSubject } from "react-icons/md";
 import { SlCalender } from "react-icons/sl";
+import { Navigate, useNavigate } from "react-router";
+import useAuth from "../../Hooks/useAuth";
 
 const Tuitions = () => {
   const [tuitions, setTuitions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const Navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
     fetch("http://localhost:3000/tuitions")
@@ -19,6 +23,14 @@ const Tuitions = () => {
         setLoading(false);
       });
   }, []);
+
+  const handleTuitionDetails = (id) => {
+    if (user) {
+      Navigate(`/tuition-details/${id}`);
+    } else {
+      Navigate("/login");
+    }
+  };
 
   return (
     <div>
@@ -36,7 +48,7 @@ const Tuitions = () => {
                 <h4 className="text-2xl font-medium font-primary text-[#2d3748]">
                   Class {tuition.class}
                 </h4>
-                <p className="text-[#757575] text-xl">Job Id: {tuition._id}</p>
+                <p className="text-[#757575] text-xl">Job Id: </p>
               </div>
               <div className="mb-5">
                 <p className="flex items-center gap-2 text-xl font-medium text-[#2d3748]">
@@ -144,7 +156,10 @@ const Tuitions = () => {
                 </div>
               </div>
               <div className="flex justify-end">
-                <button className="btn bg-accent text-white font-primary font-bold mt-4 hover:bg-[#222222] hover:border-[#222222]">
+                <button
+                  onClick={() => handleTuitionDetails(tuition._id)}
+                  className="btn bg-accent text-white font-primary font-bold mt-4 hover:bg-[#222222] hover:border-[#222222]"
+                >
                   See Details
                 </button>
               </div>

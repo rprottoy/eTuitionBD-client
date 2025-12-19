@@ -1,11 +1,11 @@
 import React from "react";
-import UseAuth from "../../../Hooks/useAuth";
+import useAuth from "../../../Hooks/useAuth";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
 const AddTuition = () => {
-  const { user } = UseAuth();
+  const { user } = useAuth();
   const AxiosSecure = useAxiosSecure();
 
   const {

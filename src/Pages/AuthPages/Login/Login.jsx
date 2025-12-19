@@ -2,13 +2,13 @@ import React from "react";
 import photo from "../../../assets/Cover1.png";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigation } from "react-router";
-import UseAuth from "../../../Hooks/useAuth";
+import useAuth from "../../../Hooks/useAuth";
 
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigation();
 
-  const { signInUser, signInGoogle } = UseAuth();
+  const { signInUser, signInGoogle } = useAuth();
 
   const {
     register,
@@ -29,13 +29,10 @@ const Login = () => {
   };
 
   const handleGoogleSignIn = () => {
-    signInGoogle()
-      .then(() => {
-        navigate(location?.state || "/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    signInGoogle().then(() => {});
+    navigate(location?.state || "/").catch((error) => {
+      console.log(error);
+    });
   };
   return (
     <div className=" md:flex items-center py-20">

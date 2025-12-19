@@ -2,8 +2,12 @@ import React from "react";
 import { CiBoxList } from "react-icons/ci";
 import { IoIosAddCircleOutline, IoMdList } from "react-icons/io";
 import { Link, NavLink, Outlet } from "react-router";
+import useAuth from "../../../Hooks/useAuth";
 
 const DashboardLayout = () => {
+  const { user, isAdmin, isTutor, isStudent } = useAuth();
+
+  console.log(isAdmin, isTutor, isStudent, user);
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -74,21 +78,27 @@ const DashboardLayout = () => {
               </li>
 
               {/* Our Dashboard Links */}
-              <li>
-                <NavLink to="/dashboard/my-tuitions">
-                  <IoMdList /> My Tuitions
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/add-tuition">
-                  <IoIosAddCircleOutline /> Add Tuition
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="add-tutor-details">
-                  <IoIosAddCircleOutline /> Add Tutor Details
-                </NavLink>
-              </li>
+              {isStudent ? (
+                <li>
+                  <NavLink to="/dashboard/my-tuitions">
+                    <IoMdList /> My Tuitions
+                  </NavLink>
+                </li>
+              ) : null}
+              {isStudent ? (
+                <li>
+                  <NavLink to="/dashboard/add-tuition">
+                    <IoIosAddCircleOutline /> Add Tuition
+                  </NavLink>
+                </li>
+              ) : null}
+              {isTutor ? (
+                <li>
+                  <NavLink to="add-tutor-details">
+                    <IoIosAddCircleOutline /> Add Tutor Details
+                  </NavLink>
+                </li>
+              ) : null}
 
               {/* List item */}
               <li>

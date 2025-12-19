@@ -2,7 +2,7 @@ import React from "react";
 import photo from "../../../assets/Cover1.png";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
-import UseAuth from "../../../Hooks/useAuth";
+import useAuth from "../../../Hooks/useAuth";
 import axios from "axios";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
@@ -17,16 +17,14 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const { registerUser, signInGoogle, updateUserProfile } = UseAuth();
+  const { registerUser, signInGoogle, updateUserProfile } = useAuth();
 
   const handleRegister = (data) => {
     // console.log(data);
     const profileImg = data.photo[0];
 
     registerUser(data.email, data.password)
-      .then((res) => {
-        console.log(res.user);
-
+      .then(() => {
         const formData = new FormData();
         formData.append("image", profileImg);
         const imageApiUrl = `https://api.imgbb.com/1/upload?key=${
@@ -34,31 +32,35 @@ const Register = () => {
         }`;
 
         axios.post(imageApiUrl, formData).then((res) => {
-          console.log(res);
+          const photoUrl = res.data.data.url;
 
           // Create user in the database
           const userInfo = {
             email: data.email,
-            name: data.name,
-            photoURL: res.data.data.url,
-            phoneNumber: res.data.data.phone,
+            displayName: data.name,
+            photoURL: photoUrl,
+            phoneNumber: data.phoneNumber,
+            role: data.role,
           };
           AxiosSecure.post("/users", userInfo).then((res) => {
-            console.log("user created in database", res);
+            // console.log(res);
+
+            if (res.data.insertedId) {
+              console.log("User in Database");
+            }
           });
 
           const userProfile = {
             displayName: data.name,
-            photoURL: res.data.data.url,
-            phoneNumber: res.data.data.phoneNumber,
-            role: res.data.data.role,
+            photoURL: photoUrl,
           };
-          updateUserProfile(userProfile).then(() => {
-            console.log("User profile updated successfully");
-            navigate(location?.state || "/").catch((error) => {
+          updateUserProfile(userProfile)
+            .then(() => {
+              navigate(location?.state || "/");
+            })
+            .catch((error) => {
               console.log(error);
             });
-          });
         });
       })
       .catch((error) => {
@@ -66,26 +68,26 @@ const Register = () => {
       });
   };
 
-  const handleGoogleSignIn = () => {
-    signInGoogle()
-      .then((res) => {
-        // console.log(res.user);
+  const handleGoogleSignIn = async () => {
+    await signInGoogle().then((res) => {
+      // console.log(res.user);
 
-        const userInfo = {
-          email: res.user.email,
-          name: res.user.displayName,
-          photoURL: res.user.data.url,
-          phoneNumber: res.user.data.phone,
-        };
+      const userInfo = {
+        email: res.user.email,
+        displayName: res.user.displayName,
+        photoURL: res.user.photoUrl,
+        phoneNumber: res.user.phone,
+      };
 
-        AxiosSecure.post("/users", userInfo).then((res) => {
-          console.log("user data stored", res);
+      AxiosSecure.post("/users", userInfo)
+        .then((res) => {
+          console.log("user data stored", res.data);
           navigate(location?.state || "/");
+        })
+        .catch((error) => {
+          console.log(error);
         });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    });
   };
 
   return (
