@@ -5,11 +5,14 @@ import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
 import axios from "axios";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import usePermission from "../../../Hooks/usePermission";
 
 const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const AxiosSecure = useAxiosSecure();
+
+  const { setRole } = usePermission();
 
   const {
     register,
@@ -44,6 +47,7 @@ const Register = () => {
           };
           AxiosSecure.post("/users", userInfo).then((res) => {
             // console.log(res);
+            setRole(res.data.role);
 
             if (res.data.insertedId) {
               console.log("User in Database");

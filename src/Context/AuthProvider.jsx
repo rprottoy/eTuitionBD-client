@@ -14,7 +14,12 @@ import { auth } from "../Firebase/Firebase.config";
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  // 🔹 Load user from localStorage first (prevents flicker)
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
   const [loading, setLoading] = useState(true);
 
   // Registration
@@ -29,25 +34,29 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+  // Google SignIn
   const signInGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
-  const logOut = () => {
+  // Logout
+  const logOut = async () => {
     setLoading(true);
-    return signOut(auth);
+    await signOut(auth);
+    localStorage.removeItem("user");
+    setUser(null);
+    setLoading(false);
   };
 
+  // Update profile
   const updateUserProfile = (profile) => {
     return updateProfile(auth.currentUser, profile);
   };
 
+  // 🔐 Firebase auth observer (source of truth)
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-
       if (currentUser) {
         const userData = {
           uid: currentUser.uid,
@@ -56,22 +65,18 @@ const AuthProvider = ({ children }) => {
           photoURL: currentUser.photoURL,
         };
 
+        setUser(userData);
         localStorage.setItem("user", JSON.stringify(userData));
       } else {
+        setUser(null);
         localStorage.removeItem("user");
       }
+
+      setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
-
-  const { isAdmin, isTutor, isStudent } = useMemo(() => {
-    return {
-      isAdmin: user?.role?.toLowerCase() === "admin",
-      isTutor: user?.role?.toLowerCase() === "tutor",
-      isStudent: user?.role?.toLowerCase() === "student",
-    };
-  }, [user]);
 
   const authInfo = {
     registerUser,
@@ -81,12 +86,11 @@ const AuthProvider = ({ children }) => {
     loading,
     logOut,
     updateUserProfile,
-    isAdmin,
-    isTutor,
-    isStudent,
   };
 
-  return <AuthContext value={authInfo}>{children}</AuthContext>;
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

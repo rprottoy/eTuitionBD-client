@@ -1,16 +1,27 @@
-# React + Vite
+## etuitionBD
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+👉 [Visit](fabulous-valkyrie-028675.netlify.app)
 
-Currently, two official plugins are available:
+Purposes
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- To solve the real problem of finding qualified tutors and verified tuition
+- To reduce friction between students and tutors by providing automated workflows
+- To enable digital class tracking, transparent payment, and structured communication.
+- To assist admins in monitoring and regulating all platform activities.
 
-## React Compiler
+packages used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- "@tailwindcss/vite": "^4.1.17",
+- "axios": "^1.13.2",
+- "firebase": "^12.6.0",
+- "leaflet": "^1.9.4",
+- "motion": "^12.23.26",
+- "react": "^19.0.0-rc.1",
+- "react-dom": "^19.0.0-rc.1",
+- "react-hook-form": "^7.68.0",
+- "react-icons": "^5.5.0",
+- "react-leaflet": "^5.0.0-rc.2",
+- "react-responsive-carousel": "^3.2.23",
+- "react-router": "^7.10.1",
+- "sweetalert2": "^11.26.4",
+- "tailwindcss": "^4.1.17"

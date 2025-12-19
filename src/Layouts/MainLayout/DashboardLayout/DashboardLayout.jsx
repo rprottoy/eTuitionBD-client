@@ -3,11 +3,10 @@ import { CiBoxList } from "react-icons/ci";
 import { IoIosAddCircleOutline, IoMdList } from "react-icons/io";
 import { Link, NavLink, Outlet } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
+import usePermission from "../../../Hooks/usePermission";
 
 const DashboardLayout = () => {
-  const { user, isAdmin, isTutor, isStudent } = useAuth();
-
-  console.log(isAdmin, isTutor, isStudent, user);
+  const { isStudent, isTutor, isAdmin } = usePermission();
   return (
     <div>
       <div className="drawer lg:drawer-open">
