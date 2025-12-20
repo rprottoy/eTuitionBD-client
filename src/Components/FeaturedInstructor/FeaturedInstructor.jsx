@@ -57,6 +57,7 @@ const FeaturedInstructor = () => {
       >
         {tutors.map((tutor) => (
           <div
+            key={tutor._id}
             onClick={handleTutorConfirm}
             className="md:w-[320px] w-full border border-gray-300 bg-white mb-5 md:mb-0 p-5 rounded-lg overflow-hidden hover:-translate-y-1  transition-all duration-500 cursor-pointer"
           >

@@ -36,14 +36,18 @@ const Navbar = () => {
         <li>Contact</li>
       </Link>
 
-      <Link to="/dashboard">
-        <li>Dashboard</li>
-      </Link>
+      {user && (
+        <>
+          <Link to="/dashboard">
+            <li>Dashboard</li>
+          </Link>
+        </>
+      )}
     </>
   );
   return (
-    <div className="mt-0 shadow-sm bg-white">
-      <div className="pb-2 max-w-11/12 mx-auto items-center ">
+    <div className="mt-0 shadow-sm bg-white fixed top-0 left-0 z-50 w-full ">
+      <div className="md:pb-5 pb-2 max-w-11/12 mx-auto items-center  ">
         {/* Menu Dropdown */}
         <div className="dropdown">
           <div
