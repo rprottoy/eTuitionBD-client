@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import photo from "../../../assets/Cover1.png";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
@@ -7,9 +7,9 @@ import useAuth from "../../../Hooks/useAuth";
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
-  const { signInUser, signInGoogle, setRole } = useAuth();
+  const { signInUser, signInGoogle, setRole, loading } = useAuth();
 
   const {
     register,
@@ -39,6 +39,13 @@ const Login = () => {
         console.log(error);
       });
   };
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-ring loading-xl text-accent"></span>
+      </div>
+    );
+  }
   return (
     <div className=" md:flex items-center py-20">
       <div className="flex-1 w-11/12 mx-auto md:w-0">

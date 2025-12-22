@@ -3,9 +3,11 @@ import { IoIosAddCircleOutline, IoMdList } from "react-icons/io";
 import { Link, NavLink, Outlet } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
 import { FaUser } from "react-icons/fa";
+import useRole from "../../../Hooks/useRole";
 
 const DashboardLayout = () => {
   const { isStudent, isTutor, isAdmin } = useAuth();
+  const { role } = useRole();
 
   return (
     <div className="drawer lg:drawer-open min-h-screen">
@@ -97,6 +99,11 @@ const DashboardLayout = () => {
                     Add Tutor Details
                   </NavLink>
                 </li>
+              </>
+            )}
+            {/* Admin Links */}
+            {role === "admin" && (
+              <>
                 <li>
                   <NavLink to="/dashboard/manage-users">
                     <FaUser className="text-lg" />
@@ -104,15 +111,6 @@ const DashboardLayout = () => {
                   </NavLink>
                 </li>
               </>
-            )}
-            {/* Admin Links */}
-            {isAdmin && (
-              <li>
-                <NavLink to="/dashboard/modify-user-roles">
-                  <IoIosAddCircleOutline className="text-lg" />
-                  Modify User Roles
-                </NavLink>
-              </li>
             )}
           </ul>
         </aside>

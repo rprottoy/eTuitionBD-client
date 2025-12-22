@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import photo from "../../../assets/Cover1.png";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
@@ -10,7 +10,6 @@ const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const AxiosSecure = useAxiosSecure();
-  const [loading, setLoading] = useState(true);
 
   const {
     register,
@@ -18,7 +17,8 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const { registerUser, signInGoogle, updateUserProfile, setRole } = useAuth();
+  const { registerUser, signInGoogle, updateUserProfile, setRole, loading } =
+    useAuth();
 
   const handleRegister = (data) => {
     // console.log(data);
@@ -44,7 +44,6 @@ const Register = () => {
             role: data.role,
           };
           AxiosSecure.post("/users", userInfo).then((res) => {
-            setLoading(false);
             // console.log(res);
             setRole(data.role || "student");
 
@@ -85,7 +84,6 @@ const Register = () => {
       // console.log("User info", userInfo);
       AxiosSecure.post("/users", userInfo)
         .then((res) => {
-          setLoading(false);
           setRole(res.data.role);
           // console.log("user data stored", res.data);
           navigate(location?.state || "/");
@@ -95,6 +93,13 @@ const Register = () => {
         });
     });
   };
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-ring loading-xl text-accent"></span>
+      </div>
+    );
+  }
 
   return (
     <div className=" md:flex items-center py-20">

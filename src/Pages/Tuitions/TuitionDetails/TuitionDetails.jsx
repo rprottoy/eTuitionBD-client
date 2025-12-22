@@ -58,7 +58,7 @@ const TuitionDetails = () => {
     };
 
     // Console log all details
-    console.log("Application Details:", applicationData);
+    // console.log("Application Details:", applicationData);
 
     // Send to backend
     fetch(`http://localhost:3000/myApplies`, {
@@ -70,7 +70,7 @@ const TuitionDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("Response from server:", data);
+        // console.log("Response from server:", data);
         Swal.fire({
           position: "top-end",
           icon: "success",
