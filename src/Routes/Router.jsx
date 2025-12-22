@@ -17,6 +17,9 @@ import TuitionDetails from "../Pages/Tuitions/TuitionDetails/TuitionDetails";
 
 import TutorDashboard from "../Pages/Dashboard/TutorDashboard/TutorDashboard";
 import AdminDashboard from "../Pages/Dashboard/AdminDashboard/AdminDashboard";
+import ModifyUserRoles from "../Pages/Dashboard/AdminDashboard/ModifyUserRoles";
+import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
+import TuitionApplication from "../Pages/Dashboard/MyTuitions/TuitionApplication/TuitionApplication";
 
 export const router = createBrowserRouter([
   {
@@ -91,6 +94,18 @@ export const router = createBrowserRouter([
       {
         path: "add-tutor-details",
         Component: AddTutorDetails,
+      },
+      {
+        path: "modify-user-roles",
+        Component: ModifyUserRoles,
+      },
+      {
+        path: "manage-users",
+        Component: ManageUsers,
+      },
+      {
+        path: "tuition-applications/:{id}",
+        Component: TuitionApplication,
       },
     ],
   },

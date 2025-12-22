@@ -22,6 +22,11 @@ const AuthProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(true);
 
+  const [role, setRole] = useState(() => {
+    const role = localStorage.getItem("role");
+    return role;
+  });
+
   // Registration
   const registerUser = (email, password) => {
     setLoading(true);
@@ -37,6 +42,7 @@ const AuthProvider = ({ children }) => {
   // Google SignIn
   const signInGoogle = () => {
     setLoading(true);
+
     return signInWithPopup(auth, googleProvider);
   };
 
@@ -45,6 +51,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     await signOut(auth);
     localStorage.removeItem("user");
+    localStorage.removeItem("role");
     setUser(null);
     setLoading(false);
   };
@@ -53,6 +60,15 @@ const AuthProvider = ({ children }) => {
   const updateUserProfile = (profile) => {
     return updateProfile(auth.currentUser, profile);
   };
+
+  const { isAdmin, isStudent, isTutor } = useMemo(() => {
+    if (role) localStorage.setItem("role", role);
+    return {
+      isAdmin: role?.toLowerCase() === "admin",
+      isStudent: role?.toLowerCase() === "student",
+      isTutor: role?.toLowerCase() === "tutor",
+    };
+  }, [role]);
 
   // 🔐 Firebase auth observer (source of truth)
   useEffect(() => {
@@ -86,6 +102,11 @@ const AuthProvider = ({ children }) => {
     loading,
     logOut,
     updateUserProfile,
+    role,
+    setRole,
+    isAdmin,
+    isStudent,
+    isTutor,
   };
 
   return (

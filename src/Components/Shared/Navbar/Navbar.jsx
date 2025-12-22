@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-
+  console.log(user);
   const handleSignOut = () => {
     logOut()
       .then((res) => {
@@ -113,7 +113,7 @@ const Navbar = () => {
                     <div tabIndex={0} role="button" className=" m-1">
                       <img
                         className="rounded-full w-7"
-                        src={user.photoURL}
+                        src={user?.photoURL}
                         alt="User's photo"
                       />
                     </div>

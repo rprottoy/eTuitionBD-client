@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import photo from "../../../assets/Cover1.png";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
 import axios from "axios";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import usePermission from "../../../Hooks/usePermission";
 
 const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const AxiosSecure = useAxiosSecure();
-
-  const { setRole } = usePermission();
+  const [loading, setLoading] = useState(true);
 
   const {
     register,
@@ -20,7 +18,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const { registerUser, signInGoogle, updateUserProfile } = useAuth();
+  const { registerUser, signInGoogle, updateUserProfile, setRole } = useAuth();
 
   const handleRegister = (data) => {
     // console.log(data);
@@ -46,11 +44,12 @@ const Register = () => {
             role: data.role,
           };
           AxiosSecure.post("/users", userInfo).then((res) => {
+            setLoading(false);
             // console.log(res);
-            setRole(res.data.role);
+            setRole(data.role || "student");
 
             if (res.data.insertedId) {
-              console.log("User in Database");
+              // console.log("User in Database");
             }
           });
 
@@ -72,20 +71,23 @@ const Register = () => {
       });
   };
 
-  const handleGoogleSignIn = async () => {
+  const handleGoogleSignup = async () => {
     await signInGoogle().then((res) => {
       // console.log(res.user);
 
       const userInfo = {
         email: res.user.email,
         displayName: res.user.displayName,
-        photoURL: res.user.photoUrl,
+        photoURL: res.user.photoURL,
         phoneNumber: res.user.phone,
+        role: "student",
       };
-
+      // console.log("User info", userInfo);
       AxiosSecure.post("/users", userInfo)
         .then((res) => {
-          console.log("user data stored", res.data);
+          setLoading(false);
+          setRole(res.data.role);
+          // console.log("user data stored", res.data);
           navigate(location?.state || "/");
         })
         .catch((error) => {
@@ -164,8 +166,8 @@ const Register = () => {
                 {...register("role", { required: true })}
               >
                 <option value="">Select a role</option>
-                <option value="Tutor">Tutor</option>
-                <option value="Student">Student</option>
+                <option value="tutor">Tutor</option>
+                <option value="student">Student</option>
               </select>
               {/* Phone */}
               <label className="label ">Phone</label>
@@ -188,7 +190,7 @@ const Register = () => {
 
             {/* Google */}
             <button
-              onClick={handleGoogleSignIn}
+              onClick={handleGoogleSignup}
               className="btn bg-white text-black border-[#e5e5e5] w-full border shadow mb-5"
             >
               <svg
@@ -218,7 +220,7 @@ const Register = () => {
                   ></path>
                 </g>
               </svg>
-              Login with Google
+              Signup with Google
             </button>
           </div>
           <div>
@@ -233,7 +235,7 @@ const Register = () => {
       </div>
 
       {/* image */}
-      <div className=" flex-1 bg-base-300">
+      <div className=" flex-1 md:block hidden bg-base-300">
         <img className="" src={photo} alt="" />
       </div>
     </div>

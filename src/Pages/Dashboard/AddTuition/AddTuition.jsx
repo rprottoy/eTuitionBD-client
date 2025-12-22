@@ -11,12 +11,14 @@ const AddTuition = () => {
   const {
     register,
     handleSubmit,
+    reset,
     // control,
     // formState: { errors },
   } = useForm();
 
   const handleTuition = (data) => {
     AxiosSecure.post("/tuitions", data).then((res) => {
+      reset();
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -24,7 +26,7 @@ const AddTuition = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      data.reset();
+
       console.log("After saving tuitions", res.data);
     });
   };
@@ -50,8 +52,20 @@ const AddTuition = () => {
             <input
               type="text"
               className="input w-full px-3 py-2 font-secondary"
-              placeholder="ex: Class 10"
+              placeholder="ex:  10"
               {...register("class")}
+            />
+          </fieldset>
+          {/* Email */}
+          <fieldset className="fieldset">
+            <label className="label font-secondary text-[#757575] font-bold">
+              Email
+            </label>
+            <input
+              type="text"
+              className="input w-full px-3 py-2 font-secondary"
+              defaultValue={user.email}
+              {...register("email")}
             />
           </fieldset>
           {/* Category */}

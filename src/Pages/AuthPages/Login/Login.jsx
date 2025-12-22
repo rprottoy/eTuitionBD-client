@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import photo from "../../../assets/Cover1.png";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
@@ -7,8 +7,9 @@ import useAuth from "../../../Hooks/useAuth";
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
-  const { signInUser, signInGoogle } = useAuth();
+  const { signInUser, signInGoogle, setRole } = useAuth();
 
   const {
     register,
@@ -21,6 +22,7 @@ const Login = () => {
     signInUser(data.email, data.password)
       .then(() => {
         // console.log(res.user);
+        setRole(data.role || "student");
         navigate(location?.state || "/");
       })
       .catch((error) => {
@@ -141,7 +143,7 @@ const Login = () => {
       </div>
 
       {/* image */}
-      <div className=" flex-1 bg-base-300">
+      <div className=" flex-1 md:block hidden bg-base-300">
         <img className="" src={photo} alt="" />
       </div>
     </div>
